@@ -107,15 +107,15 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services.Configure<WorkerOptions>((workerOption) =>
             {
-                workerOption.InputConverters.Register<FunctionContextConverter>();
-                workerOption.InputConverters.Register<TypeConverter>();
-                workerOption.InputConverters.Register<GuidConverter>();
-                workerOption.InputConverters.Register<DateTimeConverter>();
-                workerOption.InputConverters.Register<MemoryConverter>();
-                workerOption.InputConverters.Register<StringToByteConverter>();
-                workerOption.InputConverters.Register<JsonPocoConverter>();
-                workerOption.InputConverters.Register<ArrayConverter>();
-                workerOption.InputConverters.Register<CancellationTokenConverter>();
+                workerOption.InputConverters.Register<FunctionContextConverter>();      // typeof(FunctionContext)
+                workerOption.InputConverters.Register<TypeConverter>();                 // IsAssignableFrom
+                workerOption.InputConverters.Register<GuidConverter>();                 // Guid or Guid?
+                workerOption.InputConverters.Register<DateTimeConverter>();             // string => DateTime? or DateTimeOffset?
+                workerOption.InputConverters.Register<MemoryConverter>();               // ReadOnlyMemory => string or byte[]
+                workerOption.InputConverters.Register<StringToByteConverter>();         // sting => AssignableFrom(byte[])
+                workerOption.InputConverters.Register<JsonPocoConverter>();             // string or ReadOnlyMemory => (other than string)deserializable
+                workerOption.InputConverters.Register<ArrayConverter>();                // IEnumerable<> to Array
+                workerOption.InputConverters.Register<CancellationTokenConverter>();    // FunctionContext.CancellationToken
             });
         }
 

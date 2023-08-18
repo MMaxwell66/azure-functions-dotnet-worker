@@ -75,6 +75,7 @@ namespace Microsoft.Extensions.Hosting
                 return builder;
             }
 
+            // 加这个就是用来判断有没有添加过这个middleware的，这个class在下面直接并调用。
             builder.Services.AddSingleton<OutputBindingsMiddleware>(p => throw new InvalidOperationException($"Type {nameof(OutputBindingsMiddleware)} cannot be resolved using the container."));
 
             builder.Use(next =>

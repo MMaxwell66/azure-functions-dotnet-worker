@@ -70,6 +70,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddOptions<GrpcWorkerStartupOptions>()
                 .Configure<IConfiguration>((arguments, config) =>
                 {
+                    // cli args was added as config
                     config.Bind(arguments);
                 });
 

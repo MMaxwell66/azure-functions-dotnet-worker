@@ -32,6 +32,7 @@ namespace Microsoft.Azure.Functions.Worker.Grpc
         public IWorkerClient CreateClient(IMessageProcessor messageProcessor)
             => new GrpcWorkerClient(_outputChannel, _startupOptions, messageProcessor);
 
+        // 实际开始gRPC交互是这里
         private class GrpcWorkerClient : IWorkerClient
         {
             private readonly FunctionRpcClient _grpcClient;

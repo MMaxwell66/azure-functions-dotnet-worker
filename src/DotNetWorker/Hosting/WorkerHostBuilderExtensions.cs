@@ -148,6 +148,13 @@ namespace Microsoft.Extensions.Hosting
         /// <returns>The <see cref="IHostBuilder"/>.</returns>
         public static IHostBuilder ConfigureFunctionsWorkerDefaults(this IHostBuilder builder, Action<HostBuilderContext, IFunctionsWorkerApplicationBuilder> configure, Action<WorkerOptions> configureOptions)
         {
+            /*
+            IHostedService: WorkerHostedService
+
+            ILoggerProvider: WorkerLoggerProvider
+            */
+
+
             builder
                 .ConfigureHostConfiguration(config =>
                 {
